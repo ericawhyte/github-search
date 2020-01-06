@@ -1,13 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import SearchForm from './SearchForm';
+import SearchResults from './SearchResults';
 
 export default class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+  }
+
+  handleSubmit() {
+    
+  }
+
   render() {
     return (
-      <form>
-        <label for="github-search">Search Github</label>
-        <input type="search" name="search" id="github-search" placeholder="search for github user" />
-        <button type="submit">Search</button>
-      </form>
+      <Fragment>
+        <SearchForm />
+        <SearchResults />
+      </Fragment>
     );
   }
 }

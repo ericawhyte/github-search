@@ -1,0 +1,13 @@
+@import './variables.scss';
+
+.footer {
+  background-color: $dark-teal;
+  color: $white;
+  padding: 2rem;
+  order: 3;
+  width: 100vw;
+
+  p {
+    text-align: left;
+  }
+}

@@ -1,0 +1,42 @@
+@import './variables.scss';
+
+.searchItem {
+  width: 100vw;
+  list-style: none;
+}
+
+.left {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0.5rem 1.75rem 0.5rem 0.5rem;
+}
+
+.right {
+  display: inline-block;
+  padding: 0.5rem 0.5rem 0.5rem 1.75rem;
+}
+
+.repoName {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.userName {
+  font-weight: bold;
+  padding-bottom: 1rem;
+}
+
+.stars {
+  padding-bottom: 0.5rem;
+  text-align: left;
+}
+
+.watchers {
+  padding-bottom: 0.5rem;
+  text-align: left;
+}
+
+.languages {
+  padding-bottom: 0.5rem;
+}

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import styles from '../styles/SearchResults.module.scss';
+import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 
 const GET_GITHUB_SEARCH = gql`
-  query GET_GITHUB_SEARCH {
-    search(query: "ericawhyte", type: USER, first: 10) {
+  query GET_GITHUB_SEARCH($userName: String!) {
+    search(query: $userName, type: USER, first: 10) {
       repositoryCount
       nodes {
         ... on User {
@@ -36,12 +37,16 @@ const GET_GITHUB_SEARCH = gql`
   }
 `;
 
-console.log(GET_GITHUB_SEARCH);
-
 export default class SearchResults extends Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
+
   render() {
+    let searchTerm = this.props.searchTerm;
     return (
-      <Query query={GET_GITHUB_SEARCH}>
+      <Query query={GET_GITHUB_SEARCH} variables={{ searchTerm }}>
         {({data, loading, error}) => {
           if (loading) return <p>loading...</p>;
           if (error) return <p>{error}</p>;
@@ -73,4 +78,6 @@ export default class SearchResults extends Component {
   }
 }
 
-
+SearchResults.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+}

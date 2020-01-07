@@ -1,27 +1,42 @@
 import React, { Component } from 'react';
 import styles from '../styles/SearchForm.module.scss';
-import autobind from 'autobind';
+import PropTypes from 'prop-types';
 
-@autobind;
 export default class SearchForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
 
-    }
+    this.state = {
+      searchTerm: ''
+    };
+
+    this.updateSearchTerm = this.updateSearchTerm.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
-    
+  updateSearchTerm(e) {
+    this.setState({searchTerm: e.target.value});
+  }
+
+  handleSubmit(e, term) {
+    e.preventDefault();
+
+    this.props.setSearchTerm(term);
   }
   
   render() {
     return (
-      <form className={styles.search} onSubmit="">
+      <form className={styles.search} onSubmit={this.handleSubmit}>
         <label className={styles.label} htmlFor="github-search">Search Github</label>
-        <input className={styles.input} type="search" name="search" id="github-search" placeholder="search for github user" />
+
+        <input className={styles.input} type="search" name="search" id="github-search" placeholder="search for github user" value={this.state.searchTerm} onChange={this.updateSearchTerm} />
+
         <button className={styles.button} type="submit">Search</button>
       </form>
     );
   }
+}
+
+SearchForm.propTypes = {
+  setSearchTerm: PropTypes.func.isRequired,
 }

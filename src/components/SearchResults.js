@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../styles/SearchResults.module.scss';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
+import { ApolloProvider } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
 
@@ -46,7 +46,7 @@ export default class SearchResults extends Component {
   render() {
     let searchTerm = this.props.searchTerm;
     return (
-      <Query query={GET_GITHUB_SEARCH} variables={{ searchTerm }}>
+      <ApolloProvider query={GET_GITHUB_SEARCH} variables={{ searchTerm }}>
         {({data, loading, error}) => {
           if (loading) return <p>loading...</p>;
           if (error) return <p>{error}</p>;
@@ -73,7 +73,7 @@ export default class SearchResults extends Component {
             </ul>
           );
         }}
-      </Query>
+      </ApolloProvider>
     );
   }
 }

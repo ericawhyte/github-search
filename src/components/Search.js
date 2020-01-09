@@ -18,7 +18,7 @@ export default class Search extends Component {
   }
 
   render() {
-  console.log(this.state.searchTerm);
+  console.log("search component: " + this.state.searchTerm);
     return (
       <Fragment>
         <SearchForm setSearchTerm={this.setSearchTerm} />

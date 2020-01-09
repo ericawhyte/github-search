@@ -25,6 +25,7 @@ export default class SearchForm extends Component {
   }
   
   render() {
+    console.log("searchForm component: " + this.state.searchTerm);
     return (
       <form className={styles.search} onSubmit={this.handleSubmit}>
         <label className={styles.label} htmlFor="github-search">Search Github</label>

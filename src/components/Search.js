@@ -7,7 +7,8 @@ export default class Search extends Component {
     super(props);
     
     this.state = {
-      searchTerm: ''
+      searchTerm: 'ericawhyte',
+      searchData: {}
     };
 
     this.setSearchTerm = this.setSearchTerm.bind(this);
@@ -17,11 +18,14 @@ export default class Search extends Component {
     this.setState({searchTerm: term});
   }
 
+  setSearchData(data) {
+    this.setState({searchData: data});
+  }
+
   render() {
-  console.log("search component: " + this.state.searchTerm);
     return (
       <Fragment>
-        <SearchForm setSearchTerm={this.setSearchTerm} />
+        <SearchForm setSearchTerm={this.setSearchTerm} setSearchData={this.setSearchData} />
         <SearchResults searchTerm={this.state.searchTerm} />
       </Fragment>
     );

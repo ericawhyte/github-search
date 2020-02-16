@@ -6,8 +6,8 @@ import gql from 'graphql-tag';
 
 
 const GET_GITHUB_SEARCH = gql`
-  query GET_GITHUB_SEARCH($userName: String!) {
-    search(query: $userName, type: USER, first: 10) {
+  query GET_GITHUB_SEARCH {
+    search(query: "ericawhyte", type: USER, first: 10) {
       repositoryCount
       nodes {
         ... on User {
@@ -40,22 +40,13 @@ const GET_GITHUB_SEARCH = gql`
 export default class SearchResults extends Component {
   constructor(props) {
     super(props);
-    console.log("searchResults: " + props);
   }
 
   render() {
     let searchTerm = this.props.searchTerm;
     return (
-      <Query query={GET_GITHUB_SEARCH} variables={{ searchTerm }}>
-        {({data, loading, error}) => {
-          if (loading) return <p>loading...</p>;
-          if (error) return <p>{error}</p>;
 
-          let results = data.search.nodes[0];
-          let repositories = results.repositories.nodes;
-          console.log(repositories);
-          return (
-            <ul>
+      <ul>
               {repositories.forEach((repository) => { 
                 return (<li className={styles.searchItem}>
                       <div className={styles.left}>
@@ -71,9 +62,6 @@ export default class SearchResults extends Component {
                 );
               })}
             </ul>
-          )
-        }}
-      </Query>
     );
   }
 }
